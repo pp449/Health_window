@@ -17,6 +17,11 @@ button {
   width: 100%;
   background-color: #111;
   padding: 10px;
+  font-family: "maruburi", Dotum, Baekmuk Dotum, Undotum, Apple Gothic,
+    Latin font, sans-serif;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
   a {
     text-decoration: none;
     color: white;
@@ -31,7 +36,7 @@ button {
 }
 
 .show-nav {
-  height: 120px;
+  height: 200px;
 }
 
 @media screen and (min-width: 768px) {
@@ -41,6 +46,7 @@ button {
 
   .links {
     height: auto;
+    overflow: display;
     display: flex;
   }
 

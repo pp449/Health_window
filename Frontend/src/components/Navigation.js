@@ -1,27 +1,28 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { FaAlignRight } from "react-icons/fa";
-import "../scss/main.scss";
+import "../scss/Navigation.scss";
 
 const li = [
   {
     link: "/",
-    text: "Home",
+    text: "홈",
   },
   {
-    link: "/Inbody/",
-    text: "Inbody",
+    link: "/inbody/",
+    text: "인바디",
   },
   {
-    link: "/Counting/",
-    text: "Counting",
+    link: "/counting/",
+    text: "갯수 측정",
   },
   {
-    link: "/Recommend/",
-    text: "Recomment",
+    link: "/recommend/",
+    text: "추천운동",
   },
   {
-    link: "/Community/",
-    text: "Community",
+    link: "/community/",
+    text: "커뮤니티",
   },
 ];
 
@@ -43,10 +44,13 @@ export default class Navigation extends Component {
             {li.map((objLink, i) => {
               return (
                 <li key={i}>
-                  <a href={objLink.link}>{objLink.text}</a>
+                  <Link to={objLink.link}>{objLink.text}</Link>
                 </li>
               );
             })}
+            {/* <li className="login">
+              <a href="/login">Login</a>
+            </li> */}
           </ul>
         </div>
       </>
