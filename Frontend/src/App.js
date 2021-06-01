@@ -7,12 +7,12 @@ import Community from "./views/Community";
 import Recommend from "./views/Recommend";
 import "./scss/App.scss";
 import login from "./views/login";
-import Navi from "./components/Navi";
+import Navigation from "./components/Navigation";
 
 function App() {
   return (
     <BrowserRouter>
-      <Navi />
+      <Navigation />
       <Route path="/" exact={true} component={Home} />
       <Route path="/login" component={login} />
       <Route path="/inbody" component={Inbody} />

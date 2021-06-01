@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { FaToggleOff } from "react-icons/fa";
-import "../scss/Navi.scss";
+import { FaBars } from "react-icons/fa";
+import "../scss/Navigation.scss";
 import logo from "../images/favicon.png";
+import { If } from "react-if";
+import { Transition } from "react-transition-group";
 
 export default class Navi extends Component {
   state = {
     isActive: false,
-    loggedIn: true,
+    loggedIn: false,
   };
   toggle() {
     this.setState({ isActive: !this.state.isActive });
@@ -17,7 +19,7 @@ export default class Navi extends Component {
   }
   render() {
     let logged;
-    if (!this.loggedIn) {
+    if (!this.state.loggedIn) {
       logged = (
         <Link to="/login" className="account-link desktop">
           로그인하기
@@ -33,6 +35,7 @@ export default class Navi extends Component {
         </button>
       );
     }
+
     return (
       <div className="navigation app-header">
         <div className="nav-div">
@@ -43,7 +46,7 @@ export default class Navi extends Component {
             onClick={() => this.toggle()}
           >
             {/* <i className="fas fa-bars fa-2x"></i> */}
-            <FaToggleOff />
+            <FaBars size={28} />
           </button>
           <nav role="navigation" className="nav-menu">
             <Link to="/" className="logo title">
@@ -66,13 +69,46 @@ export default class Navi extends Component {
           <div className="account">
             <Link to="/#" className="account-link desktop">
               고객센터
-            </Link>{" "}
+            </Link>
             {logged}
             <Link to="/signup" className="account-link both">
               회원가입
-            </Link>{" "}
+            </Link>
           </div>
         </div>
+        <Transition in={false} timeout={200} className="side-menu">
+          <If condition={this.state.isActive}>
+            <div className="nav-overlay">
+              <Link to="write/mail" className="nav-link">
+                편지쓰기
+              </Link>
+              <Link to="/write/rolling" className="nav-link">
+                롤링페이퍼 쓰러가기
+              </Link>
+              <Link to="/mypage" className="nav-link">
+                마이페이지
+              </Link>
+              <Link to="/#" className="overlay-desktop">
+                고객센터
+              </Link>
+              {!this.state.loggedIn ? (
+                <Link to="/login" className="account-link desktop">
+                  로그인하기
+                </Link>
+              ) : (
+                <button
+                  onClick={() => this.handleLogOut()}
+                  className="account-link desktop"
+                >
+                  로그아웃
+                </button>
+              )}
+              <a href="/#" className="both">
+                회원가입
+              </a>
+            </div>
+          </If>
+        </Transition>
       </div>
     );
   }
