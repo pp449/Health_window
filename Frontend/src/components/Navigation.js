@@ -76,7 +76,7 @@ export default class Navi extends Component {
             </Link>
           </div>
         </div>
-        <Transition in={false} timeout={200} className="side-menu">
+        <Transition in={false} timeout={1000} className="side-menu">
           <If condition={this.state.isActive}>
             <div className="nav-overlay">
               <Link to="write/mail" className="nav-link">
