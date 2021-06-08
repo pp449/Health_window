@@ -1,63 +1,44 @@
 import React, { Component } from "react";
+import { RiQuestionAnswerFill } from "react-icons/ri";
+import SVG from "../assets/icons/SVG";
+import "../scss/inbody.scss";
 
 export default class Inbody extends Component {
   state = {
-    utilityContents: [
+    menu: [
       {
-        name: "뉴스",
-        iconRef: "news",
+        name: "근육량",
+        iconRef: "muscle",
+        width: "40",
+        height: "40",
       },
       {
-        name: "소설",
-        iconRef: "novel",
+        name: "체지방량",
+        iconRef: "fat",
+        width: "40",
+        height: "40",
       },
       {
-        name: "한줄명언",
-        iconRef: "words",
-      },
-      {
-        name: "노래가사",
-        iconRef: "music",
-      },
-      {
-        name: "스도쿠",
-        iconRef: "sudoku",
+        name: "몸무게",
+        iconRef: "weight",
+        width: "40",
+        height: "40",
       },
     ],
-    utilityContentName: "news",
   };
-  getImgUrl(pic, hover) {
-    if (hover) return require("../assets/icons/writing_" + pic + "-hover.svg");
-    return require("../assets/icons/writing_" + pic + ".svg");
-  }
   render() {
+    function array_sidemenu(content) {
+      return (
+        <div className="utility-bar__menu-item" key={content.name}>
+          <SVG name={content.iconRef} />
+          {content.name}
+        </div>
+      );
+    }
     return (
-      <div className="mail__wrap">
+      <div className="inbody__wrapper">
         <div className="utility-bar__menu">
-          {this.state.utilityContents.map((content, index) => (
-            <div
-              href="#"
-              className="utility-bar__menu-item"
-              key="index"
-              onClick={() =>
-                this.setState({ utilityContentName: this.content.iconRef })
-              }
-            >
-              <img
-                alt={this.content}
-                src="getImgUrl(content.iconRef, false)"
-                className="icon"
-                width="40"
-              />
-              <img
-                alt={this.content}
-                src="getImgUrl(content.iconRef, true)"
-                className="icon-hover"
-                width="40"
-              />
-              <div>{this.content}</div>
-            </div>
-          ))}
+          {this.state.menu.map((content) => array_sidemenu(content))}
         </div>
       </div>
     );

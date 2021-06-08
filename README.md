@@ -8,16 +8,18 @@
 
 reactJS
 react-native
-tensorflow
 
 ## Backend
 
 nodejs
 node Express
 mongodb
-mongoose
+mongoose (또는 mysql)
+tensorflow
 
 To do list
 
-- [ ] apply Font awesome
-- [ ] fix Navigation
+- [x] apply Font awesome
+- [x] fix Navigation
+- [ ] inbody page(chart)
+- [ ] community page

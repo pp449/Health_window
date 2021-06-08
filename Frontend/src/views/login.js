@@ -5,7 +5,7 @@ import "../scss/sign.scss";
 
 function login() {
   return (
-    <div className="wrapper">
+    <div className="sign_wrapper">
       <div className="sign__text">로그인하기</div>
       <div className="sign">
         <span className="sign__ID">

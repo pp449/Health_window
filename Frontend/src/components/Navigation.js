@@ -67,9 +67,6 @@ export default class Navi extends Component {
             </Link>
           </nav>
           <div className="account">
-            <Link to="/#" className="account-link desktop">
-              고객센터
-            </Link>
             {logged}
             <Link to="/signup" className="account-link both">
               회원가입

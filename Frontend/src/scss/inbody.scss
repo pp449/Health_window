@@ -1,0 +1,24 @@
+.inbody__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 13fr;
+  min-height: 100vh;
+  .utility-bar__menu {
+    border-right: 1px solid #ddd;
+    min-width: 54px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .utility-bar__menu-item {
+      margin-top: 1.5rem;
+      font-size: 9pt;
+      position: relative;
+      text-decoration: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
