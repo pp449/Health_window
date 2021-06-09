@@ -1,28 +1,31 @@
 import React, { Component } from "react";
-import { RiQuestionAnswerFill } from "react-icons/ri";
 import SVG from "../assets/icons/SVG";
+import InbodyChart from "../components/InbodyChart";
 import "../scss/inbody.scss";
 
 export default class Inbody extends Component {
   state = {
+    isHover: false,
     menu: [
       {
         name: "근육량",
         iconRef: "muscle",
-        width: "40",
-        height: "40",
+        iconRef_hover: "muscle_hover",
+
+        viewBox_h: "0 0 300 300",
       },
       {
         name: "체지방량",
         iconRef: "fat",
-        width: "40",
-        height: "40",
+        iconRef_hover: "fat_hover",
+        viewBox_h: "0 0 60 60",
       },
       {
         name: "몸무게",
         iconRef: "weight",
-        width: "40",
-        height: "40",
+        iconRef_hover: "weight_hover",
+        viewBox: "0 0 800 800",
+        viewBox_h: "0 0 800 800",
       },
     ],
   };
@@ -30,15 +33,30 @@ export default class Inbody extends Component {
     function array_sidemenu(content) {
       return (
         <div className="utility-bar__menu-item" key={content.name}>
-          <SVG name={content.iconRef} />
+          <div className="icon">
+            <SVG viewBox={content.viewBox} name={content.iconRef} />
+          </div>
+          <div className="icon-hover">
+            <SVG viewBox={content.viewBox_h} name={content.iconRef_hover} />
+          </div>
           {content.name}
         </div>
       );
     }
+
     return (
       <div className="inbody__wrapper">
-        <div className="utility-bar__menu">
-          {this.state.menu.map((content) => array_sidemenu(content))}
+        <div className="inbody__chart__wrapper">
+          <div className="utility-bar__menu">
+            {this.state.menu.map((content) => array_sidemenu(content))}
+          </div>
+          <div className="inbody__chart">
+            <InbodyChart />
+          </div>
+        </div>
+        <div className="add_chart_value">
+          <input type="text" />
+          <button>submit</button>
         </div>
       </div>
     );
