@@ -9,6 +9,8 @@ import "./scss/App.scss";
 import login from "./views/login";
 import signup from "./views/signup";
 import Navigation from "./components/Navigation";
+import Todolist from "./components/Todolist";
+import Routine from "./components/Routine";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
       <Route path="/inbody" component={Inbody} />
       <Route path="/counting" component={Counting} />
       <Route path="/community" component={Community} />
+      <Route path="/community/to-do-list" component={Todolist} />
+      <Route path="/community/routine" component={Routine} />
       <Route path="/recommend" component={Recommend} />
     </BrowserRouter>
   );
