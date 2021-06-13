@@ -6,7 +6,7 @@
 
 .community__wrapper {
   min-height: 100vh;
-  max-width: 1200px;
+  max-width: 1250px;
   margin: 0 auto;
   padding-left: 3rem;
   padding-right: 3rem;
@@ -44,9 +44,17 @@
     grid-template-columns: repeat(5, minmax(0, 1fr));
 
     .category__menu {
-      a {
-        text-decoration: none;
-        color: black;
+      .category__each {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        margin-bottom: 0.25rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+        display: block;
+        a {
+          text-decoration: none;
+          color: black;
+        }
       }
     }
 
@@ -79,6 +87,15 @@
           }
           .contentText {
             width: 100%;
+            font-size: 1.25rem;
+            .contentSubtext {
+              display: flex;
+              margin-top: 0.375rem;
+              font-size: 0.875rem;
+              font-weight: 300;
+              align-items: center;
+              flex-wrap: wrap;
+            }
           }
           .contentImg {
             align-items: center;

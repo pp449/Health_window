@@ -2,11 +2,52 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Ralo from "../assets/icons/ralo.jpg";
 import { FaSortUp } from "react-icons/fa";
-
+import axios from "axios";
+import "../scss/Pagination.scss";
 import "../scss/Community.scss";
+
+class Posts extends Component {
+  state = {
+    res: this.props.posts,
+  };
+
+  render() {
+    function contentList(content) {
+      return (
+        <div className="contentBox shadow-lg" key={content.title}>
+          <div className="contentList">
+            <div className="contentButton">
+              <button>
+                <FaSortUp /> {content.ddabong}
+              </button>
+            </div>
+            <div className="contentText">
+              {content.title}
+              <div className="contentSubtext">in #to-do-list by pp449</div>
+            </div>
+            <div className="contentImg">
+              <img src={Ralo} alt="ralo" />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return <div>{this.state.res.map((content) => contentList(content))}</div>;
+  }
+}
 
 class Community extends Component {
   state = {
+    pageNumbers: [],
+    res: [],
+    loading: true,
+    currentPage: 1,
+    paging: [
+      {
+        posts: [],
+        postsPerPage: 10,
+      },
+    ],
     category: [
       {
         name: "all",
@@ -21,40 +62,37 @@ class Community extends Component {
         path: "/community/routine",
       },
     ],
-    tmp_content: [
-      "모든 것을 갈아넣은 ToDoList 프로젝트",
-      "맥북과 노마드코더를 동경한 사람의 투두 리스트",
-      "To-Do-List 결과물 공유 양식",
-      "Mac Do List",
-      "너무 귀여운 투두리스",
-      "꿈나무개발자가 되고싶은 꿈나무의 포폴 웹사이트",
-      "Drag&Drop과 커스터마이징이 가능한 To Do List",
-      "코딩 테스트 공부 사이트",
-      "흔한 개발자 포트폴리오",
-      "당첨 100% 개발자 썰을 들려주세요",
-      "예술을 좋아하는 개발자의 포트폴리오 웹사이트!",
-    ],
   };
+
+  setPageNumbers = async () => {
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/posts"
+    );
+    this.setState({ res: response.data });
+    this.setState({ loading: false });
+    let myList = [];
+    for (
+      let i = 1;
+      i <= Math.ceil(this.state.res.length / this.state.paging[0].postsPerPage);
+      i++
+    ) {
+      myList.push(i);
+    }
+    this.setState({ pageNumbers: myList });
+  };
+  componentDidMount() {
+    this.setPageNumbers();
+  }
   render() {
-    function contentList(content) {
-      return (
-        <div className="contentBox shadow-lg" key={content}>
-          <div className="contentList">
-            <div className="contentButton">
-              <button>
-                <FaSortUp /> 100
-              </button>
-            </div>
-            <div className="contentText">
-              {content}
-              <div className="contentSubtext">in #to-do-list by pp449</div>
-            </div>
-            <div className="contentImg">
-              <img src={Ralo} alt="ralo" />
-            </div>
-          </div>
-        </div>
-      );
+    function currentPosts(tmp) {
+      const indexOfLast = tmp.currentPage * tmp.paging[0].postsPerPage;
+      const indexOfFirst = indexOfLast - tmp.paging[0].postsPerPage;
+      let currentPost = tmp.res.slice(indexOfFirst, indexOfLast);
+      return currentPost;
+    }
+    function setCurrentPage(tmp, num) {
+      tmp.setState({ currentPage: num });
+      console.log(tmp.state.currentPage);
     }
     return (
       <div className="community__wrapper">
@@ -67,15 +105,37 @@ class Community extends Component {
             <h3>카테고리</h3>
             <div className="category__menu">
               {this.state.category.map((list) => (
-                <div key={list.name}>
+                <div className="category__each" key={list.name}>
                   <Link to={list.path}># {list.name}</Link>
                 </div>
               ))}
             </div>
           </div>
           <div className="col-span-3">
-            {/* backend에서 URL 주소별로 넘겨주는 값을 달리하면 될듯 */}
-            {this.state.tmp_content.map((content) => contentList(content))}
+            {this.state.loading ? (
+              <div>Loading...</div>
+            ) : (
+              <div>
+                <Posts posts={currentPosts(this.state)} />
+                {/* {this.state.res.map((content) => contentList(content))} */}
+                <div className="pagination">
+                  <div className="pagination__wrapper">
+                    <ul>
+                      {this.state.pageNumbers.map((number) => (
+                        <li key={number} className="page-item">
+                          <span
+                            onClick={(num) => setCurrentPage(this, num)}
+                            className="page-link"
+                          >
+                            {number}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <div className="write__button">
             <Link to="/#">글쓰기</Link>
