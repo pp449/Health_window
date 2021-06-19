@@ -9,8 +9,8 @@ import "./scss/App.scss";
 import login from "./views/login";
 import signup from "./views/signup";
 import Navigation from "./components/Navigation";
-import Todolist from "./components/Todolist";
-import Routine from "./components/Routine";
+import Todolist from "./components/community/Todolist";
+import Routine from "./components/community/Routine";
 
 function App() {
   return (

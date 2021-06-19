@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SVG from "../assets/icons/SVG";
-import InbodyChart from "../components/InbodyChart";
+import InbodyChart from "../components/inbody/MuscleChart";
+import { Link } from "react-router-dom";
 import "../scss/inbody.scss";
 
 export default class Inbody extends Component {
@@ -11,7 +12,6 @@ export default class Inbody extends Component {
         name: "근육량",
         iconRef: "muscle",
         iconRef_hover: "muscle_hover",
-
         viewBox_h: "0 0 300 300",
       },
       {
@@ -32,15 +32,17 @@ export default class Inbody extends Component {
   render() {
     function array_sidemenu(content) {
       return (
-        <div className="utility-bar__menu-item" key={content.name}>
-          <div className="icon">
-            <SVG viewBox={content.viewBox} name={content.iconRef} />
+        <Link to={`/inbody/${content.iconRef}`} key={content.name}>
+          <div className="utility-bar__menu-item">
+            <div className="icon">
+              <SVG viewBox={content.viewBox} name={content.iconRef} />
+            </div>
+            <div className="icon-hover">
+              <SVG viewBox={content.viewBox_h} name={content.iconRef_hover} />
+            </div>
+            {content.name}
           </div>
-          <div className="icon-hover">
-            <SVG viewBox={content.viewBox_h} name={content.iconRef_hover} />
-          </div>
-          {content.name}
-        </div>
+        </Link>
       );
     }
 

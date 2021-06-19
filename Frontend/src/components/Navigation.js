@@ -59,9 +59,9 @@ export default class Navi extends Component {
             <Link to="/counting" className="nav-link">
               갯수 측정
             </Link>
-            <Link to="/recommend" className="nav-link">
+            {/* <Link to="/recommend" className="nav-link">
               추천운동
-            </Link>
+            </Link> */}
             <Link to="/community" className="nav-link">
               커뮤니티
             </Link>

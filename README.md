@@ -9,17 +9,23 @@
 reactJS
 react-native
 
+# Frontend Library
+
+nivo (chart)
+
 ## Backend
 
 nodejs
 node Express
 mongodb
-mongoose (또는 mysql)
+mongoose
 tensorflow
 
-To do list
+## To do list
+
+Counting & Recommand page will update at last
 
 - [x] apply Font awesome
 - [x] fix Navigation
-- [ ] inbody page(chart)
-- [ ] community page
+- [x] inbody page(chart)
+- [x] community page
