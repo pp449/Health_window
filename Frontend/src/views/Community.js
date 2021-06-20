@@ -106,7 +106,7 @@ class Community extends Component {
             <div className="category__menu">
               {this.state.category.map((list) => (
                 <div className="category__each" key={list.name}>
-                  <Link to={list.path}># {list.name}</Link>
+                  <Link to={`/community?${list.name}`}># {list.name}</Link>
                 </div>
               ))}
             </div>
@@ -138,7 +138,7 @@ class Community extends Component {
             )}
           </div>
           <div className="write__button">
-            <Link to="/#">글쓰기</Link>
+            <Link to="/community/write">글쓰기</Link>
           </div>
         </div>
       </div>
