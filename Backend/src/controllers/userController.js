@@ -40,7 +40,7 @@ export const logout = (req, res) => {
 export const kakaoLogin = passport.authenticate("kakao");
 
 export const postKakaoLogin = (req, res) => {
-  res.redirect(routes.home);
+  res.redirect("http://localhost:3000");
 };
 
 export const kakaoLoginCallback = async (_, __, profile, cb) => {

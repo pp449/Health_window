@@ -28,10 +28,7 @@ export default function Navi() {
   };
 
   const logout = () => {
-    axios.get("/logout").then(function () {
-      console.log("..?");
-      window.location.reload();
-    });
+    axios.get("/logout").then(function () {});
     window.location.reload();
   };
 

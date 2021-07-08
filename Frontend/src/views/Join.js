@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { FaGithub } from "react-icons/fa";
 import "../scss/sign.scss";
@@ -28,13 +27,12 @@ function Join() {
         </form>
       </div>
       <div className="social_login">
-        <button
-          className="kakao_login"
-          onClick={() => axios.get("/auth/kakao")}
-        >
-          <RiKakaoTalkFill />
-          카카오 로그인 →
-        </button>
+        <div className="kakao_login">
+          <a href="http://localhost:4000/auth/kakao">
+            <RiKakaoTalkFill />
+            카카오 로그인 →
+          </a>
+        </div>
         <button className="github_login">
           <FaGithub />
           깃허브 로그인 →
