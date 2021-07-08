@@ -104,7 +104,7 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <p>ⓒ 2020 INPENDANSIM ALL RIGHTS RESERVED.</p>
+          <p>ⓒ 2021 INPENDANSIM ALL RIGHTS RESERVED.</p>
         </footer>
       </div>
     );

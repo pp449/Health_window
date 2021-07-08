@@ -7,28 +7,30 @@ import Community from "./views/Community";
 import Recommend from "./views/Recommend";
 import "./scss/App.scss";
 import login from "./views/login";
-import signup from "./views/Signup";
+import Join from "./views/Join";
 import Navigation from "./components/Navigation";
 import Todolist from "./components/community/Todolist";
 import Routine from "./components/community/Routine";
 import WriteCommunity from "./views/WriteCommunity";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Navigation />
-      <Route path="/" exact={true} component={Home} />
-      <Route path="/login" component={login} />
-      <Route path="/signup" component={signup} />
-      <Route path="/inbody" component={Inbody} />
-      <Route path="/counting" component={Counting} />
-      <Route path="/community" exact={true} component={Community} />
-      <Route path="/community/to-do-list" component={Todolist} />
-      <Route path="/community/routine" component={Routine} />
-      <Route path="/community/write" component={WriteCommunity} />
-      <Route path="/recommend" component={Recommend} />
-    </BrowserRouter>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Navigation />
+        <Route path="/" exact={true} component={Home} />
+        <Route path="/login" component={login} />
+        <Route path="/join" component={Join} />
+        <Route path="/inbody" component={Inbody} />
+        <Route path="/counting" component={Counting} />
+        <Route path="/community" exact={true} component={Community} />
+        <Route path="/community/to-do-list" component={Todolist} />
+        <Route path="/community/routine" component={Routine} />
+        <Route path="/community/write" component={WriteCommunity} />
+        <Route path="/recommend" component={Recommend} />
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

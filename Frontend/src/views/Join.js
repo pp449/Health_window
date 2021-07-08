@@ -4,19 +4,23 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 import { FaGithub } from "react-icons/fa";
 import "../scss/sign.scss";
 
-function Login() {
+function Join() {
   return (
     <div className="sign_wrapper">
-      <div className="sign__text">로그인하기</div>
-      <div className="sign">
-        <form action="/login" method="post">
+      <div className="sign__text">회원가입</div>
+      <div className="sign join">
+        <form action="/join" method="post">
           <span className="sign__ID">
             아이디 <br />
-            <input type="text" name="username" />
+            <input type="text" name="id" />
           </span>
           <span className="sign__PW">
             패스워드 <br />
-            <input type="password" name="password" />
+            <input type="password" name="pw" />
+          </span>
+          <span className="sign__PW">
+            패스워드 확인 <br />
+            <input type="password" name="pw2" />
           </span>
           <span className="sign__button">
             <input type="submit" value="Submit" />
@@ -40,4 +44,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Join;

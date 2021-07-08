@@ -25,21 +25,23 @@
       border-width: 1px;
       margin-bottom: 5px;
     }
-    button {
-      margin-top: 20px;
-      height: 35px;
-      width: 100%;
-      border-width: 1px;
-      border-radius: 0.375rem;
-      background-color: #2563eb;
-      color: #e0e9fc;
-    }
-    button:hover {
-      background-color: rgba(59, 130, 246, 0.8);
-      cursor: pointer;
+    .sign__button {
+      input {
+        margin-top: 20px;
+        height: 35px;
+        width: 100%;
+        border-width: 1px;
+        border-radius: 0.375rem;
+        background-color: #2563eb;
+        color: #e0e9fc;
+      }
+      input:hover {
+        background-color: rgba(59, 130, 246, 0.8);
+        cursor: pointer;
+      }
     }
   }
-  .signup {
+  .join {
     height: 330px;
   }
   .social_login {

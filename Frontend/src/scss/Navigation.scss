@@ -11,6 +11,7 @@
   position: -webkit-sticky;
   top: 0px;
   a {
+    padding-left: 10px;
     text-decoration: none;
     color: black;
   }
@@ -46,6 +47,19 @@
 }
 .title {
   font-size: 24px;
+}
+.logout {
+  button {
+    background-color: white;
+    font-family: "maruburi", Dotum, Baekmuk Dotum, Undotum, Apple Gothic,
+      Latin font, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    &:hover {
+      cursor: pointer;
+      color: #007bff;
+    }
+  }
 }
 @media (max-width: 814px) {
   .app-header {
