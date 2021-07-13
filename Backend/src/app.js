@@ -1,8 +1,8 @@
 import express from "express";
 import passport from "passport";
 import MongoStore from "connect-mongo";
-import cors_proxy from "cors-anywhere";
 import globalRouter from "./routers/globalRouter";
+import communityRouter from "./routers/communityRouter";
 import session from "express-session";
 import routes from "./routes";
 import cors from "cors";
@@ -36,5 +36,6 @@ router.use(function (req, res, next) {
 });
 
 app.use(routes.home, globalRouter);
+app.use(routes.community, communityRouter);
 
 export default app;

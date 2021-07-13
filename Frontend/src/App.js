@@ -9,8 +9,6 @@ import "./scss/App.scss";
 import login from "./views/login";
 import Join from "./views/Join";
 import Navigation from "./components/Navigation";
-import Todolist from "./components/community/Todolist";
-import Routine from "./components/community/Routine";
 import WriteCommunity from "./views/WriteCommunity";
 
 class App extends React.Component {
@@ -24,8 +22,8 @@ class App extends React.Component {
         <Route path="/inbody" component={Inbody} />
         <Route path="/counting" component={Counting} />
         <Route path="/community" exact={true} component={Community} />
-        <Route path="/community/to-do-list" component={Todolist} />
-        <Route path="/community/routine" component={Routine} />
+        <Route path="/community/to-do-list" component={Community} />
+        <Route path="/community/routine" component={Community} />
         <Route path="/community/write" component={WriteCommunity} />
         <Route path="/recommend" component={Recommend} />
       </BrowserRouter>

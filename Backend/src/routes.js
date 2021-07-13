@@ -6,6 +6,12 @@ const LOGOUT = "/logout";
 const CHANGE_PASSWORD = "/change-password";
 const LOGGED_USER = "/loggedUser";
 
+//Community
+const COMMUNITY = "/community";
+const WRITE_COMMUNITY = "/write";
+const TO_DO_LIST = "/to-do-list";
+const ROUTINE = "/routine";
+
 //Kakao
 
 const KAKAO = "/auth/kakao";
@@ -25,6 +31,10 @@ const routes = {
   kakao: KAKAO,
   kakaoCallback: KAKAO_CALLBACK,
   loggedUser: LOGGED_USER,
+  community: COMMUNITY,
+  writeCommunity: WRITE_COMMUNITY,
+  todolist: TO_DO_LIST,
+  routine: ROUTINE,
 };
 
 export default routes;

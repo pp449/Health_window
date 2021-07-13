@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useEffect, useState, Component } from "react";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Ralo from "../assets/icons/ralo.jpg";
 import { FaSortUp } from "react-icons/fa";
@@ -12,9 +13,9 @@ class Posts extends Component {
   };
 
   render() {
-    function contentList(content) {
+    function contentList(content, index) {
       return (
-        <div className="contentBox shadow-lg" key={content.title}>
+        <div className="contentBox shadow-lg" key={index}>
           <div className="contentList">
             <div className="contentButton">
               <button>
@@ -32,118 +33,125 @@ class Posts extends Component {
         </div>
       );
     }
-    return <div>{this.state.res.map((content) => contentList(content))}</div>;
-  }
-}
-
-class Community extends Component {
-  state = {
-    pageNumbers: [],
-    res: [],
-    loading: true,
-    currentPage: 1,
-    paging: [
-      {
-        posts: [],
-        postsPerPage: 10,
-      },
-    ],
-    category: [
-      {
-        name: "all",
-        path: "/community",
-      },
-      {
-        name: "to-do-list",
-        path: "/community/to-do-list",
-      },
-      {
-        name: "routine",
-        path: "/community/routine",
-      },
-    ],
-  };
-
-  setPageNumbers = async () => {
-    const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-    this.setState({ res: response.data });
-    this.setState({ loading: false });
-    let myList = [];
-    for (
-      let i = 1;
-      i <= Math.ceil(this.state.res.length / this.state.paging[0].postsPerPage);
-      i++
-    ) {
-      myList.push(i);
-    }
-    this.setState({ pageNumbers: myList });
-  };
-  componentDidMount() {
-    this.setPageNumbers();
-  }
-  render() {
-    function currentPosts(tmp) {
-      const indexOfLast = tmp.currentPage * tmp.paging[0].postsPerPage;
-      const indexOfFirst = indexOfLast - tmp.paging[0].postsPerPage;
-      let currentPost = tmp.res.slice(indexOfFirst, indexOfLast);
-      return currentPost;
-    }
-    function setCurrentPage(tmp, num) {
-      tmp.setState({ currentPage: num });
-      console.log(tmp.state.currentPage);
-    }
     return (
-      <div className="community__wrapper">
-        <div className="community__title">
-          <h2>Community</h2>
-          <p>헬스인 99% 커뮤니티에서 수다 떨어요!</p>
-        </div>
-        <div className="community__main">
-          <div className="community__category">
-            <h3>카테고리</h3>
-            <div className="category__menu">
-              {this.state.category.map((list) => (
-                <div className="category__each" key={list.name}>
-                  <Link to={`/community?${list.name}`}># {list.name}</Link>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="col-span-3">
-            {this.state.loading ? (
-              <div>Loading...</div>
-            ) : (
-              <div>
-                <Posts posts={currentPosts(this.state)} />
-                {/* {this.state.res.map((content) => contentList(content))} */}
-                <div className="pagination">
-                  <div className="pagination__wrapper">
-                    <ul>
-                      {this.state.pageNumbers.map((number) => (
-                        <li key={number} className="page-item">
-                          <span
-                            onClick={(num) => setCurrentPage(this, num)}
-                            className="page-link"
-                          >
-                            {number}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="write__button">
-            <Link to="/community/write">글쓰기</Link>
-          </div>
-        </div>
+      <div>
+        {this.state.res.map((content, index) => contentList(content, index))}
       </div>
     );
   }
+}
+
+function Community() {
+  const history = useHistory();
+  const [pageNumber, setPageNumber] = useState([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPost, setCurrentPost] = useState();
+  const postsPerPage = 10;
+  const category = [
+    {
+      name: "all",
+      path: "/community/",
+    },
+    {
+      name: "to-do-list",
+      path: "/community/to-do-list",
+    },
+    {
+      name: "routine",
+      path: "/community/routine",
+    },
+  ];
+
+  function setCurrentPosts() {
+    const indexOfLast = currentPage * postsPerPage; //var * 10
+    const indexOfFirst = indexOfLast - postsPerPage; //Last - 10
+    setCurrentPost(data.slice(indexOfFirst, indexOfLast));
+  }
+
+  function tmpfunction(num) {
+    setCurrentPage(num);
+  }
+
+  useEffect(() => {
+    const setPageNumbers = async () => {
+      const location = window.location.href.split("/community")[1];
+      await axios.get("/community" + location).then(function (response) {
+        setData(response.data);
+      });
+    };
+    setPageNumbers();
+  }, []);
+
+  useEffect(() => {
+    if (data.length !== 0) {
+      let myList = [];
+      for (let i = 1; i <= Math.ceil(data.length / postsPerPage); i++) {
+        myList.push(i);
+      }
+      setPageNumber(myList);
+
+      setCurrentPosts();
+      setLoading(false);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    setCurrentPosts();
+  }, [currentPage]);
+
+  return (
+    <div className="community__wrapper">
+      <div className="community__title">
+        <h2>Community</h2>
+        <p>헬스인 99% 커뮤니티에서 수다 떨어요!</p>
+      </div>
+      <div className="community__main">
+        <div className="community__category">
+          <h3>카테고리</h3>
+          <div className="category__menu">
+            {category.map((list) => (
+              <div className="category__each" key={list.name}>
+                <Link to={list.path}># {list.name}</Link>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="col-span-3">
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <div>
+              <Posts posts={currentPost} />
+              <div className="pagination">
+                <div className="pagination__wrapper">
+                  <ul>
+                    {pageNumber.map((number, index) => (
+                      <li key={index} className="page-item">
+                        {/* <span
+                          onClick={() => tmpfunction(number)}
+                          className="page-link"
+                        >
+                          {number}
+                        </span> */}
+                        <Link to="" className="page-link">
+                          {number}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="write__button">
+          <Link to="/community/write">글쓰기</Link>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Community;

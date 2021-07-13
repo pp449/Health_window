@@ -63,7 +63,7 @@
         padding-right: 0.75rem;
       }
     }
-    button {
+    .button {
       width: 100%;
       color: white;
       font-size: 100%;
@@ -74,6 +74,8 @@
       background-color: rgba(59, 130, 246, 1);
       border-radius: 0.5rem;
       margin-top: 40px;
+      background-color: rgba(59, 130, 246, 1);
+      color: white;
       &:hover {
         cursor: pointer;
         opacity: 0.8;

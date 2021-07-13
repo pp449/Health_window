@@ -8,9 +8,13 @@ function WriteCommunity() {
         <h2>글쓰기</h2>
       </div>
       <div>
-        <form className="write__content">
+        <form
+          className="write__content"
+          action="/community/write"
+          method="post"
+        >
           <div className="title">
-            <input type="text" placeholder="제목 쓰기" />
+            <input type="text" placeholder="제목 쓰기" name="title" />
           </div>
           <div className="category">
             <select name="category">
@@ -22,9 +26,7 @@ function WriteCommunity() {
             <textarea name="content" />
           </div>
           <div className="submit">
-            <button onClick={() => console.log("clicked")} className="button">
-              등록
-            </button>
+            <input className="button" type="submit" value="Submit" />
           </div>
         </form>
       </div>
