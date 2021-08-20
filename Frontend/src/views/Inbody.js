@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import SVG from "../assets/icons/SVG";
 import InbodyChart from "../components/inbody/MuscleChart";
 import { Link } from "react-router-dom";

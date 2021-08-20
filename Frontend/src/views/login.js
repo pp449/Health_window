@@ -8,10 +8,10 @@ function Login() {
     <div className="sign_wrapper">
       <div className="sign__text">로그인하기</div>
       <div className="sign">
-        <form action="/login" method="post">
+        <form action="/signin" method="post">
           <span className="sign__ID">
             아이디 <br />
-            <input type="text" name="username" />
+            <input type="text" name="email" />
           </span>
           <span className="sign__PW">
             패스워드 <br />

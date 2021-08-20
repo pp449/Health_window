@@ -23,9 +23,17 @@ tensorflow
 
 ## To do list
 
+~2021/07/13
+
 Counting & Recommand page will update at last
 
 - [x] apply Font awesome
 - [x] fix Navigation
 - [x] inbody page(chart)
 - [x] community page
+
+2021/08/20 ~ 
+
+- [ ] change login form to jwt
+- [ ] inbody chart can input value and save it
+- [ ] add community page function
