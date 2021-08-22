@@ -2,19 +2,19 @@ import express from "express";
 import passport from "passport";
 import routes from "../routes";
 import {
-  logout,
-  getLogin,
   postJoin,
+  postChangePassword,
   postLogin,
   postKakaoLogin,
-  loggedUser,
   kakaoLogin,
 } from "../controllers/userController";
+import {auth} from "../middleware"
 
 const globalRouter = express.Router();
 
 globalRouter.post(routes.join, postJoin, postLogin);
 globalRouter.post(routes.login, postLogin);
+globalRouter.post(routes.changePassword,auth, postChangePassword);
 
 globalRouter.get(routes.kakao, kakaoLogin);
 globalRouter.get(
@@ -22,8 +22,5 @@ globalRouter.get(
   passport.authenticate("kakao", { failureRedirect: "/login" }),
   postKakaoLogin
 );
-
-globalRouter.get(routes.loggedUser, loggedUser);
-globalRouter.get(routes.logout, logout);
 
 export default globalRouter;
